@@ -51,7 +51,6 @@ def rel():
 
 
 def forward():
-    #for i in range(1, 10):
         print ('FORWARD FUNK')
         GPIO.output(Motor1A,GPIO.HIGH)
         GPIO.output(Motor1B,GPIO.LOW)
@@ -78,7 +77,7 @@ def loop():
                     ball_color = ob_color
                     grab()
                 
-                
+              
                 elif ob_type == 'Box' and ob_color == ball_color:
                     rel()
 
@@ -91,8 +90,6 @@ def loop():
                 
         elif GPIO.input(IRTrackingPin_Right) == True and GPIO.input(IRTrackingPin_Left) == False and flag:
             print ('RIGTH')
-            #GPIO.output(Motor2A,GPIO.LOW)
-            #GPIO.output(Motor2B,GPIO.HIGH)
             GPIO.output(Motor2E,GPIO.LOW)
             GPIO.output(Motor1A,GPIO.HIGH)
             GPIO.output(Motor1B,GPIO.LOW)
@@ -102,8 +99,6 @@ def loop():
              
         elif GPIO.input(IRTrackingPin_Right) == False and GPIO.input(IRTrackingPin_Left) == True and flag:    
             print ('LEFT')
-            #GPIO.output(Motor1A,GPIO.LOW)
-            #GPIO.output(Motor1B,GPIO.HIGH)
             GPIO.output(Motor1E,GPIO.LOW)
             GPIO.output(Motor2A,GPIO.HIGH)
             GPIO.output(Motor2B,GPIO.LOW)
@@ -154,10 +149,6 @@ def display(im, decodedObjects):
     # Draw the convext hull
     for j in range(0,n):
       cv2.line(im, hull[j], hull[ (j+1) % n], (255,0,0), 3)
- 
-  # Display results 
-  #cv2.imshow("Results", im);
-  #cv2.waitKey(0);
 
 
 def read_qr():
@@ -166,12 +157,9 @@ def read_qr():
     ret, im = cap.read()
     decodedObjects, data = decode(im)
     display(im, decodedObjects)
-    #h, w = im.shape[:2]
-    #cv2.resize(im, (w/10, h/10), interpolation=cv2.INTER_AREA)
     cv2.imshow('result', im);
     cv2.waitKey(15)
     if len(decodedObjects):
-      #print (data)
       return data
       
 
